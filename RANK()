@@ -1,0 +1,66 @@
+Query processing using analytical function takes place in 3 stages. 
+First all joins,where ,GROUP BY, and HAVING Clauses are performed
+2nd - The resultset is made available to the analytical function and all their calculations takes place.
+3rd - If the query has an order by clause at the end, the order by is processed to allow for precise output ordering.
+
+-- select EMPLOYEE_ID,FIRST_NAME,SALARY,RANK() OVER(ORDER BY SALARY DESC) FROM HR.EMPLOYEES;
+
+
+----------------------------------------------------------------------------
+Result Set 2
+EMPLOYEE_ID	FIRST_NAME	SALARY	RANK()OVER(ORDERBYSALARYDESC)
+100	Steven	24000	1
+101	Neena	17000	2
+102	Lex	17000	2
+145	John	14000	4
+146	Karen	13500	5
+201	Michael	13000	6
+108	Nancy	12008	7
+205	Shelley	12008	7
+147	Alberto	12000	9
+168	Lisa	11500	10
+114	Den	11000	11
+148	Gerald	11000	11
+174	Ellen	11000	11
+149	Eleni	10500	14
+162	Clara	10500	14
+156	Janette	10000	16
+150	Peter	10000	16
+204	Hermann	10000	16
+169	Harrison	10000	16
+170	Tayler	9600	20
+163	Danielle	9500	21
+151	David	9500	21
+157	Patrick	9500	21
+152	Peter	9000	24
+103	Alexander	9000	24
+158	Allan	9000	24
+109	Daniel	9000	24
+175	Alyssa	8800	28
+176	Jonathon	8600	29
+177	Jack	8400	30
+206	William	8300	31
+121	Adam	8200	32
+110	John	8200	32
+120	Matthew	8000	34
+159	Lindsey	8000	34
+153	Christopher	8000	34
+122	Payam	7900	37
+112	Jose Manuel	7800	38
+111	Ismael	7700	39
+160	Louise	7500	40
+154	Nanette	7500	40
+171	William	7400	42
+172	Elizabeth	7300	43
+164	Mattea	7200	44
+155	Oliver	7000	45
+178	Kimberely	7000	45
+161	Sarath	7000	45
+113	Luis	6900	48
+165	David	6800	49
+203	Susan	6500	50
+------------------------------------------------------------------
+
+## If you will se here after 7 th rank direct 9 rank came because same salary was there for 2 times. To overcome this issue we will use DENSE_RANK().
+
+## 
